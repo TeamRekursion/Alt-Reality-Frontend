@@ -2,6 +2,7 @@ import './style.css'
 import Webcam from "webcam-easy";
 
 $(document).ready(function() {
+  console.log('nj');
   const webcamElement = document.getElementById('webcam');
   const webcam = new Webcam(webcamElement, 'user');
   webcam.start()
@@ -23,7 +24,7 @@ $(document).ready(function() {
 
   // Settings
   var steps = 30;
-  var interval = 5;
+  var interval = 2000;
   var debug = true;
 
   // Elements
@@ -44,14 +45,12 @@ $(document).ready(function() {
     ws.html(maxBottom + 'px | ' + maxLeft + 'px');
   });
 
-  function moveDiv() {
-    if (debug) {
-      el.html('L: ' + left + 'px<br>B: ' + bottom + 'px');
-      ws.show();
-    } else if ($('#debug').not(':checked')) {
-      el.html('');
-      ws.hide();
-    }
+// common game logic
+
+
+    function moveDiv() {
+      // el.html('L: ' + left + 'px<br>B: ' + bottom + 'px');
+      // ws.show();
     Mousetrap.bind('up', function() {
       if (bottom < maxBottom) { el.css('bottom', bottom += steps); }
     });
@@ -64,14 +63,58 @@ $(document).ready(function() {
     Mousetrap.bind('right', function() {
       if (true) { el.css('left', left += steps); }
     });
-    Mousetrap.bind('shift', function() {
-      $('.help').fadeOut('slow');
-      if (debug)
-        debug = false;
-      else
-        debug = true;
+    console.log(left,bottom);
+    // moveDiv1("xy123");
+    } 
+    
+    function moveDiv1(cbottom,cleft,id) {
+      // el.html('L: ' + left + 'px<br>B: ' + bottom + 'px');
+      // ws.show();
+      console.log(cleft,cbottom);
+      var el = document.getElementById(id);
+      console.log(el);
+    Mousetrap.bind('w', function() {
+      if (bottom < maxBottom) { el.css('bottom', bottom += steps); }
     });
+    Mousetrap.bind('s', function() {
+      if (true) { el.css('bottom', bottom -= steps); }
+    });
+    Mousetrap.bind('a', function() {
+      if (left > 0) { el.css('left', left -= steps); }
+    });
+    Mousetrap.bind('d', function() {
+      if (true) { el.css('left', left += steps); }
+    });
+    // setInterval(moveDiv1(cbottom,cleft,id), interval);
+    } 
+
+
+var cbottom = 40;
+var cleft = 30;
+var id = "xy123";
+
+
+
+
+
+  function createUser(x,y,id){
+    // creating div
+    var div = document.createElement("div");
+    document.getElementById("app").appendChild(div);
+    div.setAttribute('id',id);
+    div.innerHTML="nj"
+    div.style.width = "100px";
+    div.style.backgroundColor = "white";
+    div.style.bottom = y;
+    div.style.left = x;
+    // var cbottom = y;
+    // var cleft = x;
+    // moveDiv1(cbottom,cleft,id);
   }
 
+  // use socket to create user
+  createUser(cleft,cbottom,id);
+
   setInterval(moveDiv, interval);
+  
 })
