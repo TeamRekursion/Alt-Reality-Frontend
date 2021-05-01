@@ -20,7 +20,8 @@ receiveSocket.onerror = error => {
 };
 
 receiveSocket.onmessage = data => {
-  console.log(data)
+  var data = JSON.parse(data.data).co_ordinates
+  console.log(`x: ${data.at_x} y:${data.at_y}`)
 }
 
 // Broadcast
@@ -50,4 +51,4 @@ broadcastSocket.onmessage = data => {
   console.log(data)
 }
 
-export default isBroadcastOpen;
+export { isBroadcastOpen, broadcastSocket }

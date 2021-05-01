@@ -1,6 +1,6 @@
 import './style.css'
 import Webcam from "webcam-easy";
-import isBroadcastOpen from "./socket";
+import { isBroadcastOpen, broadcastSocket } from './socket';
 
 $(document).ready(function() {
   console.log('nj');
@@ -46,79 +46,49 @@ $(document).ready(function() {
     ws.html(maxBottom + 'px | ' + maxLeft + 'px');
   });
 
-  // common game logic
-
-
+  // Common game logic
   function moveDiv() {
-    // el.html('L: ' + left + 'px<br>B: ' + bottom + 'px');
-    // ws.show();
-
     Mousetrap.bind('up', function() {
       if (bottom < maxBottom) {
         el.css('bottom', bottom += steps);
+        sendLoc(left, bottom);
       }
     });
     Mousetrap.bind('down', function() {
       if (true) {
         el.css('bottom', bottom -= steps);
+        sendLoc(left, bottom);
       }
     });
     Mousetrap.bind('left', function() {
       if (left > 0) {
         el.css('left', left -= steps);
+        sendLoc(left, bottom);
       }
     });
     Mousetrap.bind('right', function() {
       if (true) {
         el.css('left', left += steps);
+        sendLoc(left, bottom);
       }
     });
-
-    // // Send data
-    // if (isBroadcastOpen) {
-    //   broadcastSocket.send(JSON.stringify({ "at_x": left, "at_y": bottom }))
-    // }
   }
 
-  function moveDiv1(cbottom, cleft, id) {
-    // el.html('L: ' + left + 'px<br>B: ' + bottom + 'px');
-    // ws.show();
-    console.log(cleft, cbottom);
-    var a = $("#" + id);
-    console.log(a);
-    Mousetrap.bind('w', function() {
-      if (bottom < maxBottom) {
-        a.css('bottom', cbottom += steps);
-      }
-    });
-    Mousetrap.bind('s', function() {
-      if (true) {
-        a.css('bottom', cbottom -= steps);
-      }
-    });
-    Mousetrap.bind('a', function() {
-      if (left > 0) {
-        a.css('left', cleft -= steps);
-      }
-    });
-    Mousetrap.bind('d', function() {
-      if (true) {
-        a.css('left', cleft += steps);
-      }
-    });
-    // setInterval(moveDiv1(cbottom,cleft,id), interval);
+  function sendLoc(left, bottom) {
+    if (isBroadcastOpen) {
+      broadcastSocket.send(JSON.stringify({ "at_x": left, "at_y": bottom }))
+    }
   }
 
 
-
-  // parameters from sockets
+  // Parameters from sockets
   var cleft = 30;
   var cbottom = 40;
   var id = "xy123";
 
 
   function createUser(x, y, id) {
-    // creating div
+    // Creating div
     var div = document.createElement("div");
     document.getElementById("app").appendChild(div);
     div.setAttribute('id', id);
@@ -137,6 +107,6 @@ $(document).ready(function() {
   createUser(cleft, cbottom, id);
 
   setInterval(moveDiv(), interval);
-  setInterval(moveDiv1(cbottom, cleft, id), interval);
+  //setInterval(moveDiv1(cbottom, cleft, id), interval);
 
 })
