@@ -74,6 +74,35 @@ $(document).ready(function() {
     });
   }
 
+
+  function updateClients(x,y,id){
+
+    var el = $("#"+id);
+    if(id !== localStorage.getItem("myID")){
+      Mousetrap.bind('up', function() {
+        if (y < maxBottom) {
+          el.css('bottom', y);
+        }
+      });
+      Mousetrap.bind('down', function() {
+        if (true) {
+          el.css('bottom', y);
+        }
+      });
+      Mousetrap.bind('left', function() {
+        if (left > 0) {
+          el.css('left', x );
+        }
+      });
+      Mousetrap.bind('right', function() {
+        if (true) {
+          el.css('left', x);
+        }
+      });
+    }
+  }
+
+
   function sendLoc(left, bottom) {
     if (isBroadcastOpen) {
       broadcastSocket.send(JSON.stringify({ "at_x": left, "at_y": bottom }))
@@ -84,7 +113,7 @@ $(document).ready(function() {
   // Parameters from sockets
   var cleft = 30;
   var cbottom = 40;
-  var id = "xy123";
+  var id = "xy1";
 
 
   function createUser(x, y, id) {
@@ -110,3 +139,6 @@ $(document).ready(function() {
   //setInterval(moveDiv1(cbottom, cleft, id), interval);
 
 })
+
+export { updateClients };
+// module.exports = updateClients;
