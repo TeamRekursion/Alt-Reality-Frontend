@@ -53,7 +53,7 @@ var bottom = 0;
 var left = 0;
 
 // Settings
-var steps = 30;
+var steps = 10;
 
 // Game Logic
 function moveDiv() {
