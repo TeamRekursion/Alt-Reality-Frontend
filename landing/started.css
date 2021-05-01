@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+body{
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    width: 100%;
+}
+.navbar{
+    background-color: #020F1A;
+    height: 100px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.logo{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin-left: 100px; 
+}
+
+.navitems{
+    display: flex;
+    align-items: center;
+    margin-right: 60px;
+    font-size: 15px;
+}
+
+.item{
+    margin: 0 20px;
+}
+
+#signin{
+    border: 2px solid #126AFC;
+    border-radius: 25px;
+    box-sizing: border-box;
+    border-radius: 11px;
+    padding: 10px;
+}
+.ldiv{
+    height: 10vh;
+    position: relative;
+    float: left;
+    width: 60%;
+    background-color: #020F1A;
+    height: 100vh;
+    color: white;
+}
+
+.rdiv{
+    background-color: #020F1A;
+    position: relative;
+    height: 100vh;
+    float: right;
+    position: relative;
+    width: 40%;
+    background-image: url("started.png");
+    background-size: 600px 600px;
+    background-repeat: no-repeat;
+}
+
+.text1{
+    position: relative;
+    font-size: 40px;
+    left: 200px;
+    top: 120px;
+}
+
+.text2{
+    position: relative;
+    font-size: 20px;
+    left: 200px;
+    top: 150px;
+}
+
+.code{
+    float: left;
+    position: relative;
+    font-size: 15px;
+    color: white;
+    left: 200px;
+    top: 200px;
+    border: 2px solid ;
+    border-radius: 4px;
+    padding: 5px;   
+    width: 270px;
+    height: 42px;
+    text-align: center;
+    background-color: #071F33;
+    border-color: black;
+    padding-bottom: 10px;
+    float: left;
+    outline: none;
+    background-image: url('keyboard.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 40px 40px;
+    background-position: left center;
+}
+
+.joinmeeting{
+    display:flex ;
+    position: relative;
+    font-size: 20px;
+    left: 220px;
+    top: 200px;
+    color: white;
+    border: 2px solid #126AFC;
+    border-radius: 4px;
+    padding: 6px;   
+    width: 150px;
+    height: 42px;
+    align-items: center;
+    background-color: #126AFC;
+    justify-content: space-evenly;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #5B7CA1;
+}
+
+.joinmeeting:hover {
+    cursor: default;
+}
