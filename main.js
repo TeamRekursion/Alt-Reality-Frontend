@@ -1,5 +1,6 @@
 import './style.css'
 import Webcam from "webcam-easy";
+import isBroadcastOpen from "./socket";
 
 $(document).ready(function() {
   console.log('nj');
@@ -24,7 +25,7 @@ $(document).ready(function() {
 
   // Settings
   var steps = 30;
-  var interval = 2000;
+  var interval = 10;
   var debug = true;
 
   // Elements
@@ -51,6 +52,7 @@ $(document).ready(function() {
   function moveDiv() {
     // el.html('L: ' + left + 'px<br>B: ' + bottom + 'px');
     // ws.show();
+
     Mousetrap.bind('up', function() {
       if (bottom < maxBottom) {
         el.css('bottom', bottom += steps);
@@ -71,8 +73,11 @@ $(document).ready(function() {
         el.css('left', left += steps);
       }
     });
-    console.log(left, bottom);
-    // moveDiv1("xy123");
+
+    // // Send data
+    // if (isBroadcastOpen) {
+    //   broadcastSocket.send(JSON.stringify({ "at_x": left, "at_y": bottom }))
+    // }
   }
 
   function moveDiv1(cbottom, cleft, id) {

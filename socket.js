@@ -24,23 +24,30 @@ receiveSocket.onmessage = data => {
 }
 
 // Broadcast
+var isBroadcastOpen = false;
+
 let broadcastSocket = new WebSocket("wss://alt.mayankkumar.tech/rooms/broadcast/send");
 console.log("Attempting Connection...");
 
 broadcastSocket.onopen = () => {
   console.log("Successfully Connected");
+  isBroadcastOpen = true;
   broadcastSocket.send(`{\"room_id\": \"${localStorage.getItem("roomID")}\", \"participant_id\": \"${localStorage.getItem("myID")}\"}`)
 };
 
 broadcastSocket.onclose = event => {
+  isBroadcastOpen = false;
   console.log("Socket Closed Connection: ", event);
   broadcastSocket.send("Client Closed!")
 };
 
 broadcastSocket.onerror = error => {
+  isBroadcastOpen = false;
   console.log("Socket Error: ", error);
 };
 
 broadcastSocket.onmessage = data => {
   console.log(data)
 }
+
+export default isBroadcastOpen;
