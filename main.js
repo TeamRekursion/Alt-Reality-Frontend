@@ -29,9 +29,9 @@ $(document).ready(function() {
     maxLeft -= 50;
     ws.html(maxBottom + 'px | ' + maxLeft + 'px');
   });
-
-  initMeet();
 })
+
+initMeet();
 
 // Send cords over WS
 function sendLoc(left, bottom) {
@@ -77,7 +77,7 @@ function moveDiv() {
 }
 
 function updateClients(x, y, id) {
-  var el = $(".remoteVid");
+  var el = $(".remote");
   if (id != localStorage.getItem("myID")) {
     if (y < maxBottom && x > 0) {
       el.css('bottom', y);

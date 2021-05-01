@@ -40,6 +40,11 @@
   background: #2c3e50;
 }
 
+body {
+  height: 100%;
+  width: 100%;
+}
+
 .box {
   font-family: 'PT Mono', monospace;
 }
@@ -49,8 +54,8 @@
   height: 121px;
   background-color: #fff;
   position: absolute;
-  bottom: 50%;
-  left: 0;
+  bottom: 100;
+  left: 100;
   color: #000;
   font-size: 11px;
   text-align: center;
@@ -58,13 +63,12 @@
 
 .remote {
   width: 250px;
-  height: 141px;
-  background-color: #fff;
+  height: 121px;
+  background-color: transparent;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  color: #fff;
-  display: none;
+  bottom: 100;
+  left: 100;
+  color: #000;
   font-size: 11px;
   text-align: center;
 }

@@ -64,6 +64,7 @@ async function initMeet() {
     let offer = await createOffer();
     let roomID = await createRoom(offer);
     await setUpRoom(roomID);
+    alert(roomID);
   }
 };
 
