@@ -79,7 +79,8 @@ $(document).ready(function () {
     // el.html('L: ' + left + 'px<br>B: ' + bottom + 'px');
     // ws.show();
     console.log(cleft, cbottom);
-    var el = document.getElementById(id);
+    // var el = document.getElementById(id);
+    var el = $(`#${id}`);
     console.log(el);
     Mousetrap.bind('w', function () {
       if (cbottom < maxBottom) {
