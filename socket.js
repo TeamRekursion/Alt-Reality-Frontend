@@ -28,7 +28,7 @@ function loadSockets() {
     var coord = data.co_ordinates;
     var pid = data.participant_id;
     console.log(coord, data);
-    console.log(`x: ${coord.at_x} y:${coord.at_y}`)
+    // console.log(`x: ${coord.at_x} y:${coord.at_y}`)
     updateClients(coord.at_x, coord.at_y, pid);
   }
 
