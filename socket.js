@@ -1,6 +1,4 @@
-import updateClients from './main';
-localStorage.setItem("myID", "94dcf208-c6fd-4995-a8d3-9c8f3c043118");
-localStorage.setItem("roomID", "71cedc0c-b594-4e5e-9872-2b5d855f7da4");
+import { updateClients } from './main';
 
 // Receiver
 let receiveSocket = new WebSocket("wss://alt.mayankkumar.tech/rooms/broadcast/receive");
@@ -21,13 +19,12 @@ receiveSocket.onerror = error => {
 };
 
 receiveSocket.onmessage = data => {
-  
   var data = JSON.parse(data.data);
   var coord = data.co_ordinates;
   var pid = data.participant_id;
   console.log(coord, pid);
   console.log(`x: ${coord.at_x} y:${coord.at_y}`)
-  updateClients(coord.at_x,coord.at_y,"xy1");
+  updateClients(coord.at_x, coord.at_y, "xy1");
 }
 
 // Broadcast
