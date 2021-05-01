@@ -48,7 +48,7 @@ body{
     height: 10vh;
     position: relative;
     float: left;
-    width: 60%;
+    width: 50%;
     background-color: #020F1A;
     height: 100vh;
     color: white;
@@ -60,7 +60,7 @@ body{
     height: 100vh;
     float: right;
     position: relative;
-    width: 40%;
+    width: 50%;
     background-image: url("started.png");
     background-size: 600px 600px;
     background-repeat: no-repeat;
@@ -69,14 +69,14 @@ body{
 .text1{
     position: relative;
     font-size: 40px;
-    left: 200px;
+    left: 100px;
     top: 120px;
 }
 
 .text2{
     position: relative;
     font-size: 20px;
-    left: 200px;
+    left: 100px;
     top: 150px;
 }
 
@@ -85,7 +85,7 @@ body{
     position: relative;
     font-size: 15px;
     color: white;
-    left: 200px;
+    left: 100px;
     top: 200px;
     border: 2px solid ;
     border-radius: 4px;
@@ -109,17 +109,20 @@ body{
     display:flex ;
     position: relative;
     font-size: 20px;
-    left: 220px;
+    left: 150px;
     top: 200px;
     color: white;
     border: 2px solid #126AFC;
     border-radius: 4px;
     padding: 6px;   
-    width: 150px;
+    width: 200px;
     height: 42px;
     align-items: center;
     background-color: #126AFC;
     justify-content: space-evenly;
+}
+button{
+    cursor: pointer;
 }
 
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -127,5 +130,45 @@ body{
 }
 
 .joinmeeting:hover {
-    cursor: default;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px){
+    .rdiv{
+        display: none;
+    }
+    .ldiv{
+        width: 100%;
+    }
+    .text1{
+        left:20px;
+        font-size: 30px;  
+    }
+    .text2{
+        left:20px;
+        width:80%;
+        font-size: 15px;
+    }
+    .getstarted{
+        left: 20px;
+    }
+    .navitems{
+        display: none;
+    }
+    body{
+        width: 100vw;
+        overflow-x: hidden;
+    }
+    .logo{
+        margin-left: 40px;
+    }
+    .code{
+        left: 20px;
+        margin-bottom: 30px;
+    }
+    .joinmeeting{
+        left: 20px;
+        margin-top: 30px;
+
+    }
 }

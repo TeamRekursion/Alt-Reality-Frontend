@@ -99,3 +99,34 @@ body{
 .getstarted:hover {
     cursor: default;
 }
+
+@media screen and (max-width: 768px){
+    .rdiv{
+        display: none;
+    }
+    .ldiv{
+        width: 100%;
+    }
+    .text1{
+        left:20px;
+        font-size: 30px;  
+    }
+    .text2{
+        left:20px;
+        width:80%;
+        font-size: 15px;
+    }
+    .getstarted{
+        left: 20px;
+    }
+    .navitems{
+        display: none;
+    }
+    body{
+        width: 100vw;
+        overflow-x: hidden;
+    }
+    .logo{
+        margin-left: 40px;
+    }
+}
