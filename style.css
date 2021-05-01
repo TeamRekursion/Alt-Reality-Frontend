@@ -5,13 +5,33 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
-body {
+.controls {
   font-family: 'PT Sans', sans-serif;
-  /* bg from http://lea.verou.me/css3patterns/ */
-  background-color: #000;
+  background-color: #031422;
+  width: 34%;
+}
+.canvas{
+ background-color: #071F33;
+ width: 65%;
+ height: 98.1vh;
+ overflow-y: scroll ;
+ z-index: 10;
+ position: fixed;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2c3e50;
 }
 
 .box {
@@ -20,7 +40,7 @@ body {
 
 .box {
   width: 250px;
-  height: 141px;
+  height: 121px;
   background-color: #fff;
   position: absolute;
   bottom: 50%;
@@ -52,3 +72,4 @@ body {
   color: #222;
   padding: 3px 5px;
 }
+

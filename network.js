@@ -45,7 +45,7 @@ async function setUpRoom(roomID) {
 function createUser(id) {
   // Creating divs
   var div = document.createElement("div");
-  document.getElementById("app").appendChild(div);
+  document.getElementById("canvas").appendChild(div);
   div.setAttribute('id', id);
   div.setAttribute('class', 'box');
 }
