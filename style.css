@@ -12,24 +12,30 @@
   background-color: #031422;
   width: 34%;
 }
-.canvas{
- background-color: #071F33;
- width: 65%;
- height: 98.1vh;
- overflow-y: scroll ;
- z-index: 10;
- position: fixed;
+
+.canvas {
+  background-color: #071F33;
+  width: 65%;
+  height: 98.1vh;
+  overflow-y: scroll;
+  z-index: 10;
+  position: fixed;
 }
+
 ::-webkit-scrollbar {
   width: 10px;
 }
 
+
 /* Track */
+
 ::-webkit-scrollbar-track {
   background: #000;
 }
 
+
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
   background: #2c3e50;
 }
@@ -55,8 +61,8 @@
   height: 141px;
   background-color: #fff;
   position: absolute;
-  bottom: 50%;
-  right: 0;
+  bottom: 0;
+  left: 0;
   color: #fff;
   display: none;
   font-size: 11px;
@@ -72,4 +78,3 @@
   color: #222;
   padding: 3px 5px;
 }
-

@@ -31,16 +31,12 @@ let localStream = null;
 let remoteStream = null;
 
 // HTML elements
-const webcamButton = document.getElementById('webcamButton');
 const webcamVideo = document.getElementById('webcamVideo');
-const callButton = document.getElementById('callButton');
-const callInput = document.getElementById('callInput');
-const answerButton = document.getElementById('answerButton');
 const remoteVideo = document.getElementById('remoteVideo');
 
 // 1. Setup media sources
 
-webcamButton.onclick = async() => {
+async function initMeet() {
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   remoteStream = new MediaStream();
 
@@ -69,10 +65,6 @@ webcamButton.onclick = async() => {
     let roomID = await createRoom(offer);
     await setUpRoom(roomID);
   }
-
-  callButton.disabled = false;
-  answerButton.disabled = false;
-  webcamButton.disabled = true;
 };
 
 // 2. Create an offer
@@ -81,8 +73,6 @@ async function createOffer() {
   const callDoc = firestore.collection('calls').doc();
   const offerCandidates = callDoc.collection('offerCandidates');
   const answerCandidates = callDoc.collection('answerCandidates');
-
-  callInput.value = callDoc.id;
 
   // Get candidates for caller, save to db
   pc.onicecandidate = (event) => {
@@ -165,3 +155,5 @@ async function answerCall(callId) {
 function showClient() {
   remoteVideo.style.display = "flex";
 }
+
+export { initMeet }

@@ -1,4 +1,5 @@
 import './style.css';
+import { initMeet } from "./webrtc";
 import { isBroadcastOpen, broadcastSocket } from './socket';
 
 let maxBottom;
@@ -28,6 +29,8 @@ $(document).ready(function() {
     maxLeft -= 50;
     ws.html(maxBottom + 'px | ' + maxLeft + 'px');
   });
+
+  initMeet();
 })
 
 // Send cords over WS
@@ -45,7 +48,7 @@ var steps = 10;
 
 // Game Logic
 function moveDiv() {
-  var el = $("#webcamVideo")
+  var el = $(".box")
   console.log("MOOOOVEE " + localStorage.getItem("myID"));
   Mousetrap.bind('up', function() {
     if (bottom < maxBottom) {
@@ -74,7 +77,7 @@ function moveDiv() {
 }
 
 function updateClients(x, y, id) {
-  var el = $("#remoteVideo");
+  var el = $(".remoteVid");
   if (id != localStorage.getItem("myID")) {
     if (y < maxBottom && x > 0) {
       el.css('bottom', y);
