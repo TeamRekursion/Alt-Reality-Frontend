@@ -31,6 +31,7 @@ function createUser(id) {
   var div = document.createElement("div");
   document.getElementById("canvas").appendChild(div);
   div.setAttribute('id', id);
+  div.innerHTML = "a";
   div.setAttribute('class', 'box');
 }
 
