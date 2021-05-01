@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { setUpRoom, createRoom } from "./network";
-
+let chatChannel;
 const firebaseConfig = {
   apiKey: "AIzaSyCmlUA-nwCjHoB-LQ2PS-a_A48BXYCut-Y",
   authDomain: "webrtc-135a9.firebaseapp.com",
@@ -27,8 +27,11 @@ const servers = {
 
 // Global State
 const pc = new RTCPeerConnection(servers);
+
+
 let localStream = null;
 let remoteStream = null;
+
 
 // HTML elements
 const webcamVideo = document.getElementById('webcamVideo');
@@ -58,14 +61,36 @@ async function initMeet() {
   const params = new URLSearchParams(window.location.search);
   if (params.has("meetid")) {
     let roomID = params.get("meetid");
+    pc.ondatachannel = f;
     let callID = await setUpRoom(roomID);
     await answerCall(callID);
+    
   } else {
+    chatChannel =  pc.createDataChannel("chatChannel");
+    console.log("------------------------------------------")
+    console.log(chatChannel)
+    chatChannel.onmessage =  (event) => {
+      $("#chat-space").append(`<div> ${event.data} </div>`)
+    }
+    chatChannel.onopen = () => {
+      $("#chat-space").append(`<div> joined the chat. </div>`)
+    }
+    chatChannel.onclose = () => {
+      $("#chat-space").append(`<div> left the chat. </div>`)
+    }
     let offer = await createOffer();
     let roomID = await createRoom(offer);
     await setUpRoom(roomID);
     alert(roomID);
+    
   }
+
+  $("#btn-send").click(() => {
+    let msg = $("#message").val();
+    let mes = `${localStorage.getItem("myID")}- says - ${msg}`;
+    $("#chat-space").append(`<div> ${mes} </div>`)
+    chatChannel.send(`${localStorage.getItem("myID")}- says - ${msg}`);
+  })
 };
 
 // 2. Create an offer
@@ -108,6 +133,7 @@ async function createOffer() {
         const candidate = new RTCIceCandidate(change.doc.data());
         console.log(change.doc.data());
         pc.addIceCandidate(candidate);
+        $("#btn-send").prop('disabled', false);
         showClient();
       }
     });
@@ -148,6 +174,7 @@ async function answerCall(callId) {
         let data = change.doc.data();
         pc.addIceCandidate(new RTCIceCandidate(data));
         showClient();
+        
       }
     });
   });
@@ -155,6 +182,23 @@ async function answerCall(callId) {
 
 function showClient() {
   remoteVideo.style.display = "flex";
+}
+
+
+function f (event) {
+  chatChannel = event.channel;
+  console.log(f);
+  chatChannel.onmessage =  (event) => {
+    $("#chat-space").append(`<div> ${event.data} </div>`)
+  }
+  chatChannel.onopen = () => {
+    $("#chat-space").append(`<div> joined the chat. </div>`)
+  }
+  chatChannel.onclose = () => {
+    $("#chat-space").append(`<div> left the chat. </div>`)
+  }
+
+  $("#btn-send").prop('disabled', false);
 }
 
 export { initMeet }

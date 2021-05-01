@@ -83,6 +83,16 @@ function updateClients(x, y, id) {
       el.css('bottom', y);
       el.css('left', x);
     }
+    
+
+    let distNormal = 1 - (Math.sqrt(Math.pow(left-x, 2) + Math.pow(bottom-y, 2)) / maxLeft);
+    let s = document.getElementById("remoteVideo")
+    let x0 = document.getElementById("webcamVideo")
+    console.log("set volume to: ", distNormal);
+    s.volume = distNormal;
+    x0.volume = distNormal;
+    s.vol
+    console.log(s.volume, x0.volume)
   }
 }
 

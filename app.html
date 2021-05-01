@@ -9,6 +9,10 @@
   <script src="./network.js" type="module"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
+
+  <style>
+    
+  </style>
 </head>
 
 <body>
@@ -20,6 +24,15 @@
     <div class="remote">
       <video id="remoteVideo" class="remote" autoplay playsinline height="141" width="250"></video>
     </div>
+    <div class="chat">
+      <h1>CHAT</h1>
+      <div id="chat-space">
+
+      </div>
+      <input type="text" id="message">
+      <button id="btn-send" disabled>send</button>
+    </div>
+
   </div>
   <script type="module" src="/main.js"></script>
   <script type="module" src="/webrtc.js"></script>
