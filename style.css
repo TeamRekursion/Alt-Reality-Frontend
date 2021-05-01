@@ -1,27 +1,43 @@
 @import url(https://fonts.googleapis.com/css?family=PT+Sans|PT+Mono);
+body{
+  padding: 0;
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-direction: row;
+}
+.container{
+  display: flex;
+  flex-direction: row;
 }
 
 .controls {
   font-family: 'PT Sans', sans-serif;
   background-color: #031422;
-  width: 34%;
+  width: 35%;
+  height: 100%;
+  position: absolute;
+  left: 65%;
+  box-shadow: 0px 4px 26px rgba(18, 106, 252, 0.1);
+  /* position: relative; */
 }
 .canvas{
  background-color: #071F33;
  width: 65%;
- height: 98.1vh;
- overflow-y: scroll ;
+ height: 100vh;
+ overflow-y: scroll;
  z-index: 10;
- position: fixed;
+ position: absolute;
 }
 ::-webkit-scrollbar {
   width: 10px;
+  display: none;
 }
 
 /* Track */
