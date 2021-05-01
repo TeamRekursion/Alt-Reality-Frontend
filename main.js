@@ -87,7 +87,7 @@ function moveDiv() {
 
 function updateClients(x, y, id) {
   var el = $("#" + id);
-  if (id !== localStorage.getItem("myID")) {
+  if (id != localStorage.getItem("myID")) {
     if (y < maxBottom && x > 0) {
       el.css('bottom', y);
       el.css('left', x);

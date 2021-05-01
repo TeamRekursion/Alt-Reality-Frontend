@@ -1,4 +1,5 @@
 import { moveDiv } from './main';
+import { loadSockets } from './socket';
 
 var roomID = window.prompt("Enter room id: ")
 
@@ -22,6 +23,7 @@ async function setUpRoom() {
   });
 
   moveDiv();
+  loadSockets();
 }
 
 function createUser(id) {
