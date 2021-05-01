@@ -1,0 +1,42 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans|PT+Mono);
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+body {
+  font-family: 'PT Sans', sans-serif;
+  /* bg from http://lea.verou.me/css3patterns/ */
+  background-color: #000;
+}
+
+.box {
+  font-family: 'PT Mono', monospace;
+}
+
+.box {
+  width: 150px;
+  height: 80px;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #000;
+  font-size: 11px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.winsize {
+  background: #eee;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 11px;
+  color: #222;
+  padding: 3px 5px;
+}
