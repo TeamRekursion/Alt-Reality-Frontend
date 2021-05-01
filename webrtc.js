@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { setUpRoom, createRoom } from "./network";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCmlUA-nwCjHoB-LQ2PS-a_A48BXYCut-Y",
@@ -30,17 +31,12 @@ let localStream = null;
 let remoteStream = null;
 
 // HTML elements
-const webcamButton = document.getElementById('webcamButton');
 const webcamVideo = document.getElementById('webcamVideo');
-const callButton = document.getElementById('callButton');
-const callInput = document.getElementById('callInput');
-const answerButton = document.getElementById('answerButton');
 const remoteVideo = document.getElementById('remoteVideo');
-const hangupButton = document.getElementById('hangupButton');
 
 // 1. Setup media sources
 
-webcamButton.onclick = async() => {
+async function initMeet() {
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   remoteStream = new MediaStream();
 
@@ -59,19 +55,24 @@ webcamButton.onclick = async() => {
   webcamVideo.srcObject = localStream;
   remoteVideo.srcObject = remoteStream;
 
-  callButton.disabled = false;
-  answerButton.disabled = false;
-  webcamButton.disabled = true;
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("meetid")) {
+    let roomID = params.get("meetid");
+    let callID = await setUpRoom(roomID);
+    await answerCall(callID);
+  } else {
+    let offer = await createOffer();
+    let roomID = await createRoom(offer);
+    await setUpRoom(roomID);
+  }
 };
 
 // 2. Create an offer
-callButton.onclick = async() => {
+async function createOffer() {
   // Reference Firestore collections for signaling
   const callDoc = firestore.collection('calls').doc();
   const offerCandidates = callDoc.collection('offerCandidates');
   const answerCandidates = callDoc.collection('answerCandidates');
-
-  callInput.value = callDoc.id;
 
   // Get candidates for caller, save to db
   pc.onicecandidate = (event) => {
@@ -83,7 +84,6 @@ callButton.onclick = async() => {
   await pc.setLocalDescription(offerDescription);
 
   const offer = {
-    id: "1",
     sdp: offerDescription.sdp,
     type: offerDescription.type,
   };
@@ -107,16 +107,16 @@ callButton.onclick = async() => {
         const candidate = new RTCIceCandidate(change.doc.data());
         console.log(change.doc.data());
         pc.addIceCandidate(candidate);
+        showClient();
       }
     });
   });
 
-  hangupButton.disabled = false;
+  return callDoc.id;
 };
 
 // 3. Answer the call with the unique ID
-answerButton.onclick = async() => {
-  const callId = callInput.value;
+async function answerCall(callId) {
   const callDoc = firestore.collection('calls').doc(callId);
   const answerCandidates = callDoc.collection('answerCandidates');
   const offerCandidates = callDoc.collection('offerCandidates');
@@ -146,7 +146,14 @@ answerButton.onclick = async() => {
       if (change.type === 'added') {
         let data = change.doc.data();
         pc.addIceCandidate(new RTCIceCandidate(data));
+        showClient();
       }
     });
   });
 };
+
+function showClient() {
+  remoteVideo.style.display = "flex";
+}
+
+export { initMeet }

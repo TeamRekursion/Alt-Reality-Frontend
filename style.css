@@ -35,17 +35,22 @@ body{
  z-index: 10;
  position: absolute;
 }
+
 ::-webkit-scrollbar {
   width: 10px;
   display: none;
 }
 
+
 /* Track */
+
 ::-webkit-scrollbar-track {
   background: #000;
 }
 
+
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
   background: #2c3e50;
 }
@@ -59,9 +64,22 @@ body{
   height: 121px;
   background-color: #fff;
   position: absolute;
-  bottom: 0;
+  bottom: 50%;
   left: 0;
   color: #000;
+  font-size: 11px;
+  text-align: center;
+}
+
+.remote {
+  width: 250px;
+  height: 141px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  display: none;
   font-size: 11px;
   text-align: center;
 }
@@ -75,4 +93,3 @@ body{
   color: #222;
   padding: 3px 5px;
 }
-

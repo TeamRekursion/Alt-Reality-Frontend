@@ -1,9 +1,24 @@
 import { moveDiv } from './main';
 import { loadSockets } from './socket';
 
-var roomID = window.prompt("Enter room id: ")
+async function createRoom(offer_str) {
+  console.log("NETWORKKK CALL")
+  const response = await fetch('https://alt.mayankkumar.tech/rooms/create', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: "Best Room", offer_str: offer_str })
+  });
+  var res = await response.json();
+  localStorage.setItem("roomID", res.body.room_id);
+  localStorage.setItem("roomName", res.body.name);
 
-async function setUpRoom() {
+  return res.body.room_id;
+}
+
+async function setUpRoom(roomID) {
   console.log("NETWORKKK CALL")
   const response = await fetch('https://alt.mayankkumar.tech/rooms/join', {
     method: 'post',
@@ -18,12 +33,13 @@ async function setUpRoom() {
   localStorage.setItem("roomID", res.body.room.room_id);
 
   res.body.room.participants.forEach(element => {
-    createUser(element.participant_id)
     console.log(element.participant_id)
   });
 
   moveDiv();
   loadSockets();
+
+  return res.body.room.offer_str;
 }
 
 function createUser(id) {
@@ -35,4 +51,4 @@ function createUser(id) {
   div.setAttribute('class', 'box');
 }
 
-setUpRoom();
+export { setUpRoom, createRoom }
