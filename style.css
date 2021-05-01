@@ -23,9 +23,22 @@ body {
   height: 141px;
   background-color: #fff;
   position: absolute;
-  bottom: 0;
+  bottom: 50%;
   left: 0;
   color: #000;
+  font-size: 11px;
+  text-align: center;
+}
+
+.remote {
+  width: 250px;
+  height: 141px;
+  background-color: #fff;
+  position: absolute;
+  bottom: 50%;
+  right: 0;
+  color: #fff;
+  display: none;
   font-size: 11px;
   text-align: center;
 }

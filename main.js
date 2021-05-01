@@ -1,5 +1,4 @@
-import './style.css'
-import Webcam from "webcam-easy";
+import './style.css';
 import { isBroadcastOpen, broadcastSocket } from './socket';
 
 let maxBottom;
@@ -8,17 +7,6 @@ let maxLeft;
 $(document).ready(function() {
   maxBottom = $(window).height();
   maxLeft = $(window).width();
-
-  // Webcam
-  // const webcamElement = document.getElementById('webcam');
-  // const webcam = new Webcam(webcamElement, 'user');
-  // webcam.start()
-  //   .then(result => {
-  //     console.log("webcam started");
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
 
   window.addEventListener("keydown", function(e) {
     if (["Space", "ArrowUp", "ArrowLeft"].indexOf(e.code) > -1) {

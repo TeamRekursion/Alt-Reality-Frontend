@@ -14,8 +14,18 @@
 <body>
   <div id="app">
     <div class="winsize"></div>
+    <button id="webcamButton">Start webcam</button>
+    <button id="callButton" disabled>Create Call (offer)</button>
+    <h2>Join a Call</h2>
+    <input id="callInput" />
+    <button id="answerButton" disabled>Answer</button>
+    <div class="box">
+      <video id="webcamVideo" autoplay playsinline height="141" width="250"></video>
+    </div>
+    <video id="remoteVideo" class="remote" autoplay playsinline height="141" width="250"></video>
   </div>
   <script type="module" src="/main.js"></script>
+  <script type="module" src="/webrtc.js"></script>
 
 </body>
 
