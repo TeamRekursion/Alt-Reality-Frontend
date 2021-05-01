@@ -1,6 +1,17 @@
 import './style.css'
+import Webcam from "webcam-easy";
 
 $(document).ready(function() {
+  const webcamElement = document.getElementById('webcam');
+  const webcam = new Webcam(webcamElement, 'user');
+  webcam.start()
+    .then(result => {
+      console.log("webcam started");
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
   window.addEventListener("keydown", function(e) {
     if (["Space", "ArrowUp", "ArrowLeft"].indexOf(e.code) > -1) {
       e.preventDefault();

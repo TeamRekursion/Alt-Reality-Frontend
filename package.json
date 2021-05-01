@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "vite": "^2.2.3"
+  },
+  "dependencies": {
+    "webcam-easy": "^1.0.5"
   }
 }
