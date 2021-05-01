@@ -45,7 +45,7 @@ var steps = 30;
 
 // Game Logic
 function moveDiv() {
-  var el = $("#" + localStorage.getItem("myID"))
+  var el = $("#webcamVideo")
   console.log("MOOOOVEE " + localStorage.getItem("myID"));
   Mousetrap.bind('up', function() {
     if (bottom < maxBottom) {
@@ -74,7 +74,7 @@ function moveDiv() {
 }
 
 function updateClients(x, y, id) {
-  var el = $("#" + id);
+  var el = $("#remoteVideo");
   if (id != localStorage.getItem("myID")) {
     if (y < maxBottom && x > 0) {
       el.css('bottom', y);
